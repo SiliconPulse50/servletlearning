@@ -30,10 +30,14 @@ public class ServletDemo6 extends HttpServlet {
     //表单Method="Post"提交，请求参数放在请求体，POST 用来提交新增修改
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //1.获取字符输入流
+        //1.设置请求体的字符集，必须在获取参数/读取流之前调用
+        //  POST 请求体默认按 ISO-8859-1 解码，不设置这一行中文就是乱码（例如 张三 ->  å¼ ä¸‰）
+        req.setCharacterEncoding("UTF-8");
+
+        //2.获取字符输入流
         BufferedReader br=req.getReader();
 
-        //2.读取数据
+        //3.读取数据
         String line=br.readLine();
         System.out.println(line);
 
