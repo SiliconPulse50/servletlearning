@@ -21,6 +21,7 @@ class GuardedObject {
 //            return response;
 //        }
 //    }
+    //  修改版get() :不但要防止死等，还要防止虚假唤醒导致的时间计算错误
 public Object get(long timeout) {
     synchronized (this) {
         // 1. 按下秒表，记下现在的时间（比如 15:00:00）
